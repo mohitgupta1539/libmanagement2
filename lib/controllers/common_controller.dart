@@ -8,7 +8,7 @@ class CommonController extends GetxController with GetSingleTickerProviderStateM
   late List<Tab> tabs;
   late RxString screen;
 
-  final tabList = ["Now showing", "Up coming", "Exclusive"];
+  final tabList = ["Latest", "Up coming", "Best"];
 
   @override
   void onInit() {

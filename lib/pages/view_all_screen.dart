@@ -46,7 +46,7 @@ class _ViewAllScreenState extends State<ViewAllScreen> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text("aslhfosdfhniosdfhi"),
+          title: Text("Books Detail"),
           // title: Text(
           //   "${menu.name} in ${LocationController.instance.city}",
           //   maxLines: 1,

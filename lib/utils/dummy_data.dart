@@ -18,7 +18,7 @@ List<AdSliderModel> sliderData = [
 ];
 
 List<MenuModel> menus = [
-  MenuModel(name: "Movies", asset: "assets/icons/film.svg"),
+  MenuModel(name: "Study", asset: "assets/icons/film.svg"),
   MenuModel(name: "Events", asset: "assets/icons/spotlights.svg"),
   MenuModel(name: "Plays", asset: "assets/icons/theater_masks.svg"),
   MenuModel(name: "Sports", asset: "assets/icons/running.svg"),
