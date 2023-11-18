@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:libmanagement/controllers/auth_controller.dart';
 import 'package:libmanagement/pages/splash_screen.dart';
+import 'controllers/common_controller.dart';
 import 'package:get/get.dart';
 import 'utils/mytheme.dart';
 
@@ -9,7 +10,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Get.put(AuthController());
-  runApp(MyApp());
+  Get.put(CommonController());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

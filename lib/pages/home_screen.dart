@@ -1,3 +1,76 @@
+// import 'package:flutter/material.dart';
+// import 'package:libmanagement/controllers/auth_controller.dart';
+
+// import 'dart:async';
+
+// import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:flutter/foundation.dart';
+// import 'package:flutter/gestures.dart';
+// // import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:get/get.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
+// // // import 'package:libmanagement/controllers/location_controller.dart';
+// // // import 'package:libmanagement/controllers/shared_pref.dart';
+// // // import 'package:libmanagement/pages/profile_screen.dart';
+// // // import 'package:libmanagement/pages/select_location_screen.dart';
+// // import '../controllers/auth_controller.dart';
+// import '../utils/custom_slider.dart';
+// import '../utils/dummy_data.dart';
+// import '../utils/event_items.dart';
+// import '../utils/menu_item.dart';
+// import '../utils/movies_item.dart';
+// import '../utils/mytheme.dart';
+
+// import '../utils/constants.dart';
+
+// class HomeScreen extends StatefulWidget {
+//   const HomeScreen({Key? key}) : super(key: key);
+
+//   @override
+//   State<HomeScreen> createState() => _HomeScreenState();
+// }
+
+
+// class _HomeScreenState extends State<HomeScreen> {
+//   String city = cities[0];
+//   final Completer<GoogleMapController> _controller = Completer();
+
+//   static const CameraPosition _kGooglePlex = CameraPosition(
+//     target: LatLng(37.42796133580664, -122.085749655962),
+//     zoom: 14.4746,
+//   );
+
+//   // @override
+//   // void initState() {
+//   //   // SharedPref.getLocation().then((value) => LocationController.instance.setCity(value));
+//   //   super.initState();
+//   // }
+
+//   static const CameraPosition _kLake =
+//       CameraPosition(bearing: 192.8334901395799, target: LatLng(37.43296265331129, -122.08832357078792), tilt: 59.440717697143555, zoom: 19.151926040649414);
+
+//    @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//       child: ElevatedButton(
+//         onPressed: () {
+//           AuthController.instance.signOut();
+//         }, child: Center(child: Text("Logout"),),)
+//       ),
+//     );
+//   }
+// }
+
+
+
+
+
+
+
+
 import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -7,15 +80,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
 // import 'package:libmanagement/controllers/location_controller.dart';
 // import 'package:libmanagement/controllers/shared_pref.dart';
-// import 'package:libmanagement/pages/profile_screen.dart';
+import 'package:libmanagement/pages/profile_screen.dart';
 // import 'package:libmanagement/pages/select_location_screen.dart';
 import '../controllers/auth_controller.dart';
 import '../utils/custom_slider.dart';
 import '../utils/dummy_data.dart';
-// import '../utils/event_items.dart';
+import '../utils/event_items.dart';
 import '../utils/menu_item.dart';
 import '../utils/movies_item.dart';
 import '../utils/mytheme.dart';
@@ -31,21 +104,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String city = cities[0];
-  final Completer<GoogleMapController> _controller = Completer();
+  // final Completer<GoogleMapController> _controller = Completer();
 
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
+  // static const CameraPosition _kGooglePlex = CameraPosition(
+  //   target: LatLng(37.42796133580664, -122.085749655962),
+  //   zoom: 14.4746,
+  // );
 
-  @override
-  void initState() {
-    // SharedPref.getLocation().then((value) => LocationController.instance.setCity(value));
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   // SharedPref.getLocation().then((value) => LocationController.instance.setCity(value));
+  //   super.initState();
+  // }
 
-  static const CameraPosition _kLake =
-      CameraPosition(bearing: 192.8334901395799, target: LatLng(37.43296265331129, -122.08832357078792), tilt: 59.440717697143555, zoom: 19.151926040649414);
+  // static const CameraPosition _kLake =
+  //     CameraPosition(bearing: 192.8334901395799, target: LatLng(37.43296265331129, -122.08832357078792), tilt: 59.440717697143555, zoom: 19.151926040649414);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.only(left: 8, top: 8),
               child: GestureDetector(
                 onTap: () {
-                  // Get.to(() => const ProfileScreen());
+                  Get.to(() => const ProfileScreen());
                 },
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
@@ -94,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         //     style: TextStyle(color: Colors.white.withOpacity(0.7), inherit: true, fontSize: 14),
                         //   ),
                         // ),
-                        Icon(Icons.keyboard_arrow_down, color: Colors.white.withOpacity(0.7)),
+                        // Icon(Icons.keyboard_arrow_down, color: Colors.white.withOpacity(0.7)),
                       ],
                     ),
                   ),
@@ -175,19 +248,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   height: size.height * 0.2,
                   padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: GoogleMap(
-                    mapType: MapType.normal,
-                    initialCameraPosition: _kGooglePlex,
-                    gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-                      Factory<OneSequenceGestureRecognizer>(
-                        () => EagerGestureRecognizer(),
-                      )
-                    },
-                    onMapCreated: (GoogleMapController controller) {
-                      //_controller.complete(controller);
-                    },
-                    zoomControlsEnabled: false,
-                  ),
+                  // child: GoogleMap(
+                  //   mapType: MapType.normal,
+                  //   initialCameraPosition: _kGooglePlex,
+                  //   gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+                  //     Factory<OneSequenceGestureRecognizer>(
+                  //       () => EagerGestureRecognizer(),
+                  //     )
+                  //   },
+                  //   onMapCreated: (GoogleMapController controller) {
+                  //     //_controller.complete(controller);
+                  //   },
+                  //   zoomControlsEnabled: false,
+                  // ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, top: 10, right: 20),
@@ -217,9 +290,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                // EventItems(
-                //   events: events,
-                // ),
+                EventItems(
+                  events: events,
+                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, top: 10, right: 20),
                   child: Row(
@@ -248,9 +321,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                // EventItems(
-                //   events: plays,
-                // ),
+                EventItems(
+                  events: plays,
+                ),
               ],
             ),
           ),

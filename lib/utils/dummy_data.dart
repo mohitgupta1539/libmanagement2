@@ -1,8 +1,8 @@
-import 'package:movieticketbookingapp/model/seat_layout_model.dart';
+import 'package:libmanagement/model/seat_layout_model.dart';
 
 import '../model/crew_cast_model.dart';
 import '../model/movie_model.dart';
-import '../model/offer_model.dart';
+// import '../model/offer_model.dart';
 import '../model/theatre_model.dart';
 import '../utils/mytheme.dart';
 
@@ -26,27 +26,27 @@ List<MenuModel> menus = [
   MenuModel(name: "Monum", asset: "assets/icons/pyramid.svg"),
 ];
 
-List<OfferModel> offers = [
-  OfferModel(
-    title: "Wait ! Grab FREE reward",
-    description: "Book your seats and tap on the reward box to claim it.",
-    expiry: DateTime(2022, 4, 15, 12),
-    startTime: DateTime(2022, 3, 15, 12),
-    discount: 100,
-    color: MyTheme.redTextColor,
-    gradientColor: MyTheme.redGiftGradientColors,
-  ),
-  OfferModel(
-    title: "Wait ! Grab FREE reward",
-    description: "Book your seats and tap on the reward box to claim it.",
-    expiry: DateTime(2022, 4, 15, 12),
-    startTime: DateTime(2022, 3, 15, 12),
-    discount: 100,
-    color: MyTheme.greenTextColor,
-    gradientColor: MyTheme.greenGiftGradientColors,
-    icon: "gift_green.svg",
-  ),
-];
+// List<OfferModel> offers = [
+//   OfferModel(
+//     title: "Wait ! Grab FREE reward",
+//     description: "Book your seats and tap on the reward box to claim it.",
+//     expiry: DateTime(2022, 4, 15, 12),
+//     startTime: DateTime(2022, 3, 15, 12),
+//     discount: 100,
+//     color: MyTheme.redTextColor,
+//     gradientColor: MyTheme.redGiftGradientColors,
+//   ),
+//   OfferModel(
+//     title: "Wait ! Grab FREE reward",
+//     description: "Book your seats and tap on the reward box to claim it.",
+//     expiry: DateTime(2022, 4, 15, 12),
+//     startTime: DateTime(2022, 3, 15, 12),
+//     discount: 100,
+//     color: MyTheme.greenTextColor,
+//     gradientColor: MyTheme.greenGiftGradientColors,
+//     icon: "gift_green.svg",
+//   ),
+// ];
 
 List<MovieModel> movies = [
   MovieModel(

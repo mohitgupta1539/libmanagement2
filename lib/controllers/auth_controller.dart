@@ -63,8 +63,8 @@ class AuthController extends GetxController {
 
   void googleLogin() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
-    // isLoging = true;
-    // update();
+    isLoging = true;
+    update();
     try {
       googleSignIn.disconnect();
     } catch (e) {}
