@@ -6,7 +6,7 @@ class MovieModel {
   final String title;
   final String description;
   final List<String> actors;
-  final int like;
+  final String like;
   final String bannerUrl;
   final List<String> screens;
   MovieModel({
@@ -25,7 +25,7 @@ class MovieModel {
     String? title,
     String? description,
     List<String>? actors,
-    int? like,
+    String? like,
     String? bannerUrl,
     List<String>? screens,
   }) {
@@ -55,7 +55,7 @@ class MovieModel {
       title: map['title'] ?? '',
       description: map['description'] ?? '',
       actors: List<String>.from(map['actors']),
-      like: map['like']?.toInt() ?? 0,
+      like: map['like'] ?? '',
       bannerUrl: map['bannerUrl'] ?? '',
       screens: List<String>.from(map['screens']),
     );

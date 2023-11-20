@@ -4,29 +4,40 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import '../controllers/auth_controller.dart';
-import '../pages/signup_screen.dart';
+// import '../pages/signup_screen.dart';
 import '../utils/mytheme.dart';
 import '../utils/social_buttons.dart';
+import 'package:libmanagement/services/functions/authFunctions.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  // final emailController = TextEditingController();
+  // final passwordController = TextEditingController();
   final forgotEmailController = TextEditingController();
+  String nameController = '';
+  String emailController = '';
+  String passwordController = '';
+  String cnfPasswordController = '';
+  bool login = false;
+
   @override
   Widget build(BuildContext context) {
     final Size _size = MediaQuery.of(context).size;
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return Scaffold(
       backgroundColor: MyTheme.splash,
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
+      body: Form(
+        key: _formKey,
         child: Container(
           color: Colors.transparent,
           height: _size.height,
@@ -34,29 +45,24 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // ========= banner ==========
               SvgPicture.asset("assets/icons/splash_icon.svg"),
               const Padding(
-                padding: EdgeInsets.only(top: 30),
+                padding: EdgeInsets.only(top: 10),
                 child: Text(
                   "Welcome Buddies,",
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 20,
                     color: Colors.white,
                   ),
                 ),
               ),
-              Text(
-                "Login to book your seat, I said its your seat",
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.white.withOpacity(0.7),
-                ),
-              ),
               const SizedBox(
-                height: 20,
+                height: 5,
               ),
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 padding: const EdgeInsets.all(19),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -67,37 +73,95 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Login to your account",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: MyTheme.splash,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                    login
+                        ? const Text(
+                            "Login to your account",
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: MyTheme.splash,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          )
+                        : const Text(
+                            "Create your account",
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: MyTheme.splash,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                    // ============== name ===============
+                    login
+                        ? Container()
+                        : Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: TextFormField(
+                              style: const TextStyle(color: Colors.black),
+                              key: ValueKey('nameController'),
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: BorderSide.none,
+                                ),
+                                hintText: "Name",
+                                hintStyle:
+                                    const TextStyle(color: Colors.black45),
+                                fillColor: MyTheme.greyColor,
+                                filled: true,
+                              ),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please Enter Full Name';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              onSaved: (value) {
+                                setState(() {
+                                  nameController = value!;
+                                });
+                              },
+                            ),
+                          ),
+                    // ================= email ================
                     Padding(
-                      padding: const EdgeInsets.only(top: 15),
+                      padding: const EdgeInsets.only(top: 10),
                       child: TextFormField(
-                        controller: emailController,
                         style: const TextStyle(color: Colors.black),
+                        key: ValueKey('emailController'),
+                        keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5),
                             borderSide: BorderSide.none,
                           ),
-                          hintText: "Username",
+                          hintText: "Email Address",
                           hintStyle: const TextStyle(color: Colors.black45),
                           fillColor: MyTheme.greyColor,
                           filled: true,
                         ),
+                        validator: (value) {
+                          if (value!.isEmpty || !value.contains('@')) {
+                            return 'Please Enter valid Email';
+                          } else {
+                            return null;
+                          }
+                        },
+                        onSaved: (value) {
+                          setState(() {
+                            emailController = value!;
+                          });
+                        },
                       ),
                     ),
+                    // ============= password ==============
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: TextFormField(
-                        controller: passwordController,
-                        obscureText: true,
                         style: const TextStyle(color: Colors.black),
+                        key: ValueKey('passwordController'),
+                        obscureText: true,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5),
@@ -108,8 +172,55 @@ class _LoginScreenState extends State<LoginScreen> {
                           fillColor: MyTheme.greyColor,
                           filled: true,
                         ),
+                        validator: (value) {
+                          if (value!.length < 6) {
+                            return 'Please Enter Password of min length 6';
+                          } else {
+                            return null;
+                          }
+                        },
+                        onSaved: (value) {
+                          setState(() {
+                            passwordController = value!;
+                          });
+                        },
                       ),
                     ),
+                    // ================ cnfPassword ===============
+                    login
+                        ? Container()
+                        : Padding(
+                            padding: const EdgeInsets.only(top: 10, bottom: 10),
+                            child: TextFormField(
+                              style: const TextStyle(color: Colors.black),
+                              key: ValueKey('cnfPasswordController'),
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: BorderSide.none,
+                                ),
+                                hintText: "Confirm Password",
+                                hintStyle:
+                                    const TextStyle(color: Colors.black45),
+                                fillColor: MyTheme.greyColor,
+                                filled: true,
+                              ),
+                              validator: (value) {
+                                if (value!.length < 6) {
+                                  return 'Please Enter Password of min length 6';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              onSaved: (value) {
+                                setState(() {
+                                  cnfPasswordController = value!;
+                                });
+                              },
+                            ),
+                          ),
+                    // ================ forgot password =================
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
@@ -125,7 +236,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   borderSide: BorderSide.none,
                                 ),
                                 hintText: "Email address",
-                                hintStyle: const TextStyle(color: Colors.black45),
+                                hintStyle:
+                                    const TextStyle(color: Colors.black45),
                                 fillColor: MyTheme.greyColor,
                                 filled: true,
                               ),
@@ -136,10 +248,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
                               return Future.value(true);
                             },
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
                             confirm: ElevatedButton(
                               onPressed: () {
-                                AuthController.instance.forgorPassword(forgotEmailController.text.trim());
+                                AuthController.instance.forgorPassword(
+                                    forgotEmailController.text.trim());
                                 forgotEmailController.text = "";
                                 Get.back();
                               },
@@ -163,13 +277,23 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: const Text(
                           "Forgot Password?",
-                          style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w600),
+                          style: TextStyle(
+                              color: Colors.black54,
+                              fontWeight: FontWeight.w600),
                         ),
                       ),
                     ),
+                    // ================== submit button =============
                     ElevatedButton(
-                      onPressed: () {
-                        AuthController.instance.login(emailController.text.trim(), passwordController.text.trim());
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          login
+                              ? AuthServices.signinUser(
+                                  emailController, passwordController, context)
+                              : AuthServices.signupUser(emailController,
+                                  passwordController, nameController, context);
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         primary: MyTheme.splash,
@@ -177,11 +301,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                      child: const Center(
+                      child: Center(
                         child: Padding(
                           padding: EdgeInsets.all(12),
                           child: Text(
-                            "LOGIN",
+                            login ? 'Login' : 'Signup',
                             style: TextStyle(fontSize: 16),
                           ),
                         ),
@@ -228,17 +352,22 @@ class _LoginScreenState extends State<LoginScreen> {
               RichText(
                 text: TextSpan(
                   children: [
-                    const TextSpan(
-                      text: "Don’t have an account ? ",
+                    TextSpan(
+                      text: login
+                          ? "Don’t have an account ? "
+                          : "Already have an account? ",
                       style: TextStyle(fontWeight: FontWeight.w700),
                     ),
                     TextSpan(
-                      text: "Sign Up",
-                      style: const TextStyle(decoration: TextDecoration.underline, fontWeight: FontWeight.w700),
+                      text: login ? "Sign Up" : "Login",
+                      style: const TextStyle(
+                          decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.w700),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          // Navigator.push(context, MaterialPageRoute(builder: (_) => SignUpScreen()));
-                          Get.to(const SignUpScreen());
+                          setState(() {
+                            login = !login;
+                          });
                         },
                     ),
                     const TextSpan(

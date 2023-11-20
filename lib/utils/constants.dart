@@ -5,8 +5,8 @@ class Constants {
 
   //test env
   static const String createOrderUrl = "https://api.razorpay.com/v1/orders";
-  static const String keySecret = "E0rXQPk7O1V9nymCsWpGlNHt";
- 
- static const String keyId = "rzp_test_18uZyRVD8VK3Wv";
-  
+  // static const String keySecret = "E0rXQPk7O1V9nymCsWpGlNHt";
+  static const String keySecret = "3LOGdDK0ZPi0URuRBIXDcbN7";
+  // static const String keyId = "rzp_test_18uZyRVD8VK3Wv";
+  static const String keyId = "rzp_test_fNU0dw5F7YacQm";
 }

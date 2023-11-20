@@ -58,14 +58,14 @@ class ItemBlock extends StatelessWidget {
                   ? Row(
                       children: [
                         const Icon(
-                          Icons.favorite,
+                          Icons.cast_for_education,
                           color: MyTheme.splash,
                         ),
                         const SizedBox(
                           width: 5,
                         ),
                         Text(
-                          "${model.like}%",
+                          "${model.like}",
                           style: const TextStyle(fontSize: 10),
                         )
                       ],

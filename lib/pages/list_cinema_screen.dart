@@ -142,20 +142,20 @@ class _ListCinemaScreenState extends State<ListCinemaScreen> {
           elevation: 0,
           title: Text(widget.model.title),
           actions: [
-            IconButton(
-              onPressed: () {
-                showSearch(
-                  context: context,
-                  delegate: TheatreSearchDelegate(widget.model),
-                );
-              },
-              icon: SvgPicture.asset("assets/icons/search.svg"),
-            ),
+            // IconButton(
+            //   onPressed: () {
+            //     showSearch(
+            //       context: context,
+            //       delegate: TheatreSearchDelegate(widget.model),
+            //     );
+            //   },
+            //   icon: SvgPicture.asset("assets/icons/search.svg"),
+            // ),
           ],
         ),
         body: ListView.builder(
           physics: const BouncingScrollPhysics(),
-          itemCount: theatres.length,
+          itemCount: 1,
           itemBuilder: (_, index) {
             return Container(
               padding: EdgeInsets.only(bottom: index != theatres.length - 1 ? 20 : 0),
@@ -173,29 +173,29 @@ class _ListCinemaScreenState extends State<ListCinemaScreen> {
   }
 }
 
-class TheatreSearchDelegate extends SearchDelegate {
-  final MovieModel model;
-  TheatreSearchDelegate(this.model);
+// class TheatreSearchDelegate extends SearchDelegate {
+//   final MovieModel model;
+//   TheatreSearchDelegate(this.model);
 
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      Container(),
-    ];
-  }
+//   @override
+//   List<Widget>? buildActions(BuildContext context) {
+//     return [
+//       Container(),
+//     ];
+//   }
 
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        close(context, null.toString());
-      },
-      icon: AnimatedIcon(
-        icon: AnimatedIcons.menu_close,
-        progress: transitionAnimation,
-      ),
-    );
-  }
+  // @override
+  // Widget? buildLeading(BuildContext context) {
+  //   return IconButton(
+  //     onPressed: () {
+  //       close(context, null.toString());
+  //     },
+  //     icon: AnimatedIcon(
+  //       icon: AnimatedIcons.menu_arrow,
+  //       progress: transitionAnimation,
+  //     ),
+  //   );
+  // }
 
   @override
   Widget buildResults(BuildContext context) {
@@ -203,30 +203,31 @@ class TheatreSearchDelegate extends SearchDelegate {
     throw UnimplementedError();
   }
 
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    final suggestionList = query.isEmpty
-        ? theatres
-        : theatres
-            .where(
-              (element) => element.name.toLowerCase().contains(query.toLowerCase()),
-            )
-            .toList();
+  // @override
+  // Widget buildSuggestions(BuildContext context) {
+    // final suggestionList = query.isEmpty
+    //     ? theatres
+    //     : theatres
+    //         .where(
+    //           (element) => element.name.toLowerCase().contains(query.toLowerCase()),
+    //         )
+    //         .toList();
 
-    return ListView.builder(
-      physics: const BouncingScrollPhysics(),
-      itemCount: suggestionList.length,
-      itemBuilder: (_, index) {
-        return Container(
-          padding: EdgeInsets.only(bottom: index != suggestionList.length - 1 ? 20 : 0),
-          child: TheatreBlock(
-            model: suggestionList[index],
-            onTimeTap: (index) {
-              Get.to(() => SeatSelectionScreen(theatreModel: suggestionList[index], movieModel: model));
-            },
-          ),
-        );
-      },
-    );
-  }
-}
+    // return ListView.builder(
+    //   physics: const BouncingScrollPhysics(),
+    //   // itemCount: suggestionList.length,
+    //   itemCount: 1,
+    //   itemBuilder: (_, index) {
+    //     return Container(
+    //       padding: EdgeInsets.only(bottom: index != 1 - 1 ? 20 : 0),
+    //       child: TheatreBlock(
+    //         model: suggestionList[index],
+    //         onTimeTap: (index) {
+    //           Get.to(() => SeatSelectionScreen(theatreModel: suggestionList[index], movieModel: model));
+    //         },
+    //       ),
+    //     );
+    //   },
+    // );
+//   }
+// }

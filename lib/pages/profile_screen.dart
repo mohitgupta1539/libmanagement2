@@ -80,6 +80,24 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                     const SizedBox(
                       height: 60,
                     ),
+                    // ===================== general details =======================
+                    // =============== Dashboard ==================
+                    // ==================== issued books ==================
+                    // =================== changed password ================
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: ListTile(
+                        title: const Text(
+                          'General Details',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        onTap: () {},
+                      ),
+                    ),
+                    const Divider(
+                      thickness: 3,
+                      color: MyTheme.greyColor,
+                    ),
                     const Padding(
                       padding: EdgeInsets.only(left: 70.0),
                       child: Text("Name"),
@@ -207,7 +225,22 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                       ),
                     ),
                     const Divider(
-                      thickness: 1,
+                      thickness: 3,
+                      color: MyTheme.greyColor,
+                    ),
+                    
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: ListTile(
+                        title: const Text(
+                          'Dashboard',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        onTap: () {},
+                      ),
+                    ),
+                    const Divider(
+                      thickness: 3,
                       color: MyTheme.greyColor,
                     ),
                     const Padding(

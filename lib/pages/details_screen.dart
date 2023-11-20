@@ -16,24 +16,24 @@ class DetailsScreen extends StatelessWidget {
   titleWidget(model) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
-            "Black Panther -  The King",
+           Text(
+            model.title,
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              fontSize: 18,
+              fontSize: 20,
             ),
           ),
           Row(
             children: [
               const Icon(
-                Icons.favorite,
+                Icons.cast_for_education,
                 color: MyTheme.splash,
               ),
               const SizedBox(
                 width: 5,
               ),
               Text(
-                "${model.like}%",
+                "${model.like}",
                 style: const TextStyle(fontSize: 10),
               )
             ],
@@ -103,7 +103,7 @@ class DetailsScreen extends StatelessWidget {
             width: 10,
           ),
         ),
-        const TextSpan(
+         TextSpan(
           text: "2h 59m",
           style: TextStyle(
             color: Colors.black45,
@@ -127,7 +127,7 @@ class DetailsScreen extends StatelessWidget {
             width: 10,
           ),
         ),
-        const TextSpan(
+         TextSpan(
           text: "Action, Drama",
           style: TextStyle(
             color: Colors.black45,
@@ -150,15 +150,15 @@ class DetailsScreen extends StatelessWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children:  [
                 Text(
-                  "UA | Oct 15, 2019",
+                  model.description,
                   style: TextStyle(
                     color: Colors.black45,
                   ),
                 ),
                 Text(
-                  "1.8K votes",
+                  "1.9K reviews",
                   style: TextStyle(
                     color: MyTheme.splash,
                   ),
@@ -267,10 +267,10 @@ class DetailsScreen extends StatelessWidget {
                       height: 20,
                     ),
                     const ReviewBlock(),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const CrewCastBlock(),
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
+                    // const CrewCastBlock(),
                   ],
                 ),
               ),

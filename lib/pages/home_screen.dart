@@ -31,21 +31,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String city = cities[0];
-  // final Completer<GoogleMapController> _controller = Completer();
-
-  // static const CameraPosition _kGooglePlex = CameraPosition(
-  //   target: LatLng(37.42796133580664, -122.085749655962),
-  //   zoom: 14.4746,
-  // );
-
-  // @override
-  // void initState() {
-  //   // SharedPref.getLocation().then((value) => LocationController.instance.setCity(value));
-  //   super.initState();
-  // }
-
-  // static const CameraPosition _kLake =
-  //     CameraPosition(bearing: 192.8334901395799, target: LatLng(37.43296265331129, -122.08832357078792), tilt: 59.440717697143555, zoom: 19.151926040649414);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -148,47 +134,47 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, top: 10),
                   child: Text(
-                    "RECOMMENDED SEATS",
+                    "Book Seat",
                     style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black.withOpacity(0.8)),
                   ),
                 ),
                 const MoviesItems(),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 10, right: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Nearby theatres".toUpperCase(),
-                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black.withOpacity(0.8)),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "View All",
-                          style: TextStyle(color: MyTheme.splash),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  height: size.height * 0.2,
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  // child: GoogleMap(
-                  //   mapType: MapType.normal,
-                  //   initialCameraPosition: _kGooglePlex,
-                  //   gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-                  //     Factory<OneSequenceGestureRecognizer>(
-                  //       () => EagerGestureRecognizer(),
-                  //     )
-                  //   },
-                  //   onMapCreated: (GoogleMapController controller) {
-                  //     //_controller.complete(controller);
-                  //   },
-                  //   zoomControlsEnabled: false,
-                  // ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 20.0, top: 10, right: 20),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Text(
+                //         "Nearby theatres".toUpperCase(),
+                //         style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black.withOpacity(0.8)),
+                //       ),
+                //       TextButton(
+                //         onPressed: () {},
+                //         child: const Text(
+                //           "View All",
+                //           style: TextStyle(color: MyTheme.splash),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // Container(
+                //   height: size.height * 0.2,
+                //   padding: const EdgeInsets.only(left: 20, right: 20),
+                //   // child: GoogleMap(
+                //   //   mapType: MapType.normal,
+                //   //   initialCameraPosition: _kGooglePlex,
+                //   //   gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+                //   //     Factory<OneSequenceGestureRecognizer>(
+                //   //       () => EagerGestureRecognizer(),
+                //   //     )
+                //   //   },
+                //   //   onMapCreated: (GoogleMapController controller) {
+                //   //     //_controller.complete(controller);
+                //   //   },
+                //   //   zoomControlsEnabled: false,
+                //   // ),
+                // ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, top: 10, right: 20),
                   child: Row(
@@ -220,37 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 EventItems(
                   events: events,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 10, right: 20),
-                  child: Row(
-                    children: [
-                      SvgPicture.asset(
-                        "assets/icons/theater_masks.svg",
-                        color: Colors.black.withOpacity(0.8),
-                        height: 18,
-                        width: 18,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "Plays".toUpperCase(),
-                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black.withOpacity(0.8)),
-                      ),
-                      const Spacer(),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "View All",
-                          style: TextStyle(color: MyTheme.splash),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                EventItems(
-                  events: plays,
-                ),
+                
               ],
             ),
           ),

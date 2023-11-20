@@ -39,15 +39,16 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 15),
                 child: Text(
-                  "How Many Seats?",
+                  "Book your Seat in library",
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 19,
                   ),
                 ),
               ),
               Obx(
                 () => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                   child: SvgPicture.asset(
                     "assets/icons/${SeatSelectionController.instance.getAsset()}",
                     height: 100,
@@ -55,13 +56,26 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
                   ),
                 ),
               ),
+              const Divider(
+                thickness: 3,
+                color: MyTheme.greyColor,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: Text(
+                  "Please Select number of seat",
+                  style: TextStyle(
+                    fontSize: 15,
+                  ),
+                ),
+              ),
               NoOfSeats(onTap: SeatSelectionController.instance.noOfSeats),
               const SizedBox(
                 height: 10,
               ),
-              SeatType(
-                onTap: SeatSelectionController.instance.seatType,
-              ),
+              // SeatType(
+              //   onTap: SeatSelectionController.instance.seatType,
+              // ),
             ],
           ),
         ),
@@ -75,17 +89,21 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
         height: AppBar().preferredSize.height,
         child: ElevatedButton(
           onPressed: () {
+            print("=================== number of seat ========================");
+            print(SeatSelectionController.instance.noOfSeats.value);
             print(SeatSelectionController.instance.isSeatSelection.value);
 
             if (SeatSelectionController.instance.isSeatSelection.value) {
               if (SeatSelectionController.instance.seatPrice <= 0.0) {
-                AuthController.instance.getErrorSnackBarNew("Please select atleast one seat");
+                AuthController.instance
+                    .getErrorSnackBarNew("Please select atleast one seat");
                 return;
               }
               SeatSelectionController.instance.createOrder();
             } else {
               if (SeatSelectionController.instance.noOfSeats.value <= 0) {
-                AuthController.instance.getErrorSnackBarNew("Please select number of seats");
+                AuthController.instance
+                    .getErrorSnackBarNew("Please select number of seats");
                 return;
               }
               toggle(true);
@@ -139,9 +157,11 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: bottomBar(toggle: SeatSelectionController.instance.isSeatSelection),
+      bottomNavigationBar:
+          bottomBar(toggle: SeatSelectionController.instance.isSeatSelection),
       backgroundColor: const Color(0xFFF5F5FA),
-      appBar: myAppBar(toggle: SeatSelectionController.instance.isSeatSelection),
+      appBar:
+          myAppBar(toggle: SeatSelectionController.instance.isSeatSelection),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

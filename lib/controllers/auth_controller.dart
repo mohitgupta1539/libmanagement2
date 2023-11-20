@@ -7,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:libmanagement/pages/home_screen.dart';
 import 'package:libmanagement/pages/login_screen.dart';
 import 'package:libmanagement/utils/mytheme.dart';
+import 'package:libmanagement/services/functions/firebaseFunctions.dart';
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
@@ -77,6 +78,26 @@ class AuthController extends GetxController {
           idToken: googleAuth?.idToken,
         );
         await auth.signInWithCredential(crendentials);
+        // print("================== google signinaccount ==========================");
+        // print(googleSignInAccount);
+        // print("================= name =================");
+        // print(googleSignInAccount.displayName);
+        // print("==================== uid ===============================================");
+        // print(_user.value!.uid);
+        // print("================== google signinaccount ==========================");
+        // print(googleSignInAccount);
+        // print("================= name =================");
+        // print(_user.value!.displayName.toString());
+        // print("==================== uid ===============================================");
+        // print(_user.value!.uid);
+        // print("==================== email ===============================================");
+        // print(_user.value!.email.toString());
+        // print("==================== photo url ===============================================");
+        // print(_user.value!.photoURL);
+        await FirebaseAuth.instance.currentUser!.updateDisplayName(_user.value!.displayName.toString());
+        await FirebaseAuth.instance.currentUser!.updateEmail(_user.value!.email.toString());
+        await FirebaseAuth.instance.currentUser!.updatePhotoURL(_user.value!.photoURL);
+        await FirestoreServices.saveUser(_user.value!.displayName.toString(), _user.value!.email.toString(), _user.value!.photoURL.toString(), _user.value!.uid);
         getSuccessSnackBar("Successfully logged in as ${_user.value!.email}");
       }
     } on FirebaseAuthException catch (e) {

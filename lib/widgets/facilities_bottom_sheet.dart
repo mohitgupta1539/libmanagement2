@@ -28,8 +28,9 @@ class FacilitesBottomSheet extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: 150,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                height: 20,
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   // child: GoogleMap(
@@ -52,7 +53,7 @@ class FacilitesBottomSheet extends StatelessWidget {
               ),
               Text(
                 model.name,
-                style: const TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 19),
               ),
               RichText(
                 text: TextSpan(
@@ -64,10 +65,11 @@ class FacilitesBottomSheet extends StatelessWidget {
                         color: Color(0xff999999),
                       ),
                     ),
-                    TextSpan(
-                      // text: LocationController.instance.city.value,
-                      style: const TextStyle(color: Color(0xff999999), fontSize: 14),
-                    ),
+                    // TextSpan(
+                    //   // text: LocationController.instance.city.value,
+                    //   style: const TextStyle(
+                    //       color: Color(0xff999999), fontSize: 14),
+                    // ),
                   ],
                 ),
               ),
@@ -82,12 +84,16 @@ class FacilitesBottomSheet extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
+              const Divider(
+                thickness: 3,
+                color: MyTheme.greyColor,
+              ),
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Available Facilites",
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 19,
                   ),
                 ),
               ),

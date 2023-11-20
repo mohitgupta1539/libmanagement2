@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:libmanagement/controllers/auth_controller.dart';
 import 'package:libmanagement/utils/constants.dart';
@@ -50,6 +51,18 @@ class SeatSelectionController extends GetxController {
       String.fromCharCodes(Iterable.generate(length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 
   void createOrder() async {
+    User? firebaseUser = FirebaseAuth.instance.currentUser;
+    FirebaseFirestore.instance.collection('seatbookings').doc(selectedSeats.first).update({"userId": firebaseUser?.uid, 
+    "seatnumber": selectedSeats.first,
+    // "timeSelectedIndex": timeSelectedIndex
+    })
+            // .then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen())))
+            .catchError((e) {
+              print(e);
+            }
+            );
+    print("======================= seatnumber ====================");
+    print("rowNumber - ${selectedSeats.first} ================== SeatNumber - ${selectedSeats}");
     http.Response res = await http.post(
       Uri.parse(Constants.createOrderUrl),
       headers: {
@@ -65,7 +78,8 @@ class SeatSelectionController extends GetxController {
 
     print(res.body);
     String orderId = jsonDecode(res.body)['id'];
-    print(orderId);
+    // print("========================= orderId ====================");
+    // print(orderId);
     createPayment(orderId);
   }
 

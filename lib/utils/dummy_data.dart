@@ -50,31 +50,31 @@ List<MenuModel> menus = [
 
 List<MovieModel> movies = [
   MovieModel(
-    title: "Bigil",
+    title: "for 24 hour Study",
     description: "description",
     actors: ["actor a", "actor b"],
-    like: 84,
+    like: "Study",
     bannerUrl: "assets/movies/movie1.png",
   ),
   MovieModel(
-    title: "Kaithi",
+    title: "for 7 Days",
     description: "description",
     actors: ["actor a", "actor b"],
-    like: 84,
+    like: "Study",
     bannerUrl: "assets/movies/movie2.png",
   ),
   MovieModel(
-    title: "Asuran",
+    title: "for 15 Days",
     description: "description",
     actors: ["actor a", "actor b"],
-    like: 84,
+    like: "Study",
     bannerUrl: "assets/movies/movie3.png",
   ),
   MovieModel(
-    title: "Sarkar",
+    title: "for 1 months",
     description: "description",
     actors: ["actor a", "actor b"],
-    like: 84,
+    like: "Study",
     bannerUrl: "assets/movies/movie4.png",
   ),
 ];
@@ -169,10 +169,10 @@ List<CrewCastModel> crewCast = [
 ];
 
 List<TheatreModel> theatres = [
-  TheatreModel(id: "1", name: "Arasan Cinemas A/C 2K Dolby"),
+  TheatreModel(id: "1", name: "Best Library"),
   TheatreModel(id: "2", name: "INOX - Prozone mall"),
-  TheatreModel(id: "3", name: "Karpagam theatres - 4K Dolby Atoms"),
-  TheatreModel(id: "4", name: "KG theatres - 4K"),
+  // TheatreModel(id: "3", name: "Karpagam theatres - 4K Dolby Atoms"),
+  // TheatreModel(id: "4", name: "KG theatres - 4K"),
 ];
 
 List<String> facilityAsset = [
@@ -193,7 +193,7 @@ final seatLayout = SeatLayoutModel(
     seatTypes: [
       {"title": "King", "price": 120.0, "status": "Filling Fast"},
       {"title": "Queen", "price": 100.0, "status": "Available"},
-      {"title": "Jack", "price": 80.0, "status": "Available"},
+      // {"title": "Jack", "price": 80.0, "status": "Available"},
     ],
     theatreId: 123,
     gap: 2,
@@ -201,4 +201,4 @@ final seatLayout = SeatLayoutModel(
     isLastFilled: true,
     rowBreaks: [5, 3, 2]);
 
-final List<int> s = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+final List<int> s = [1];

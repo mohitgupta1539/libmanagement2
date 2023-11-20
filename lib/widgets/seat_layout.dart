@@ -31,9 +31,13 @@ class SeatLayout extends StatelessWidget {
               seatPriceList.removeAt(0);
               seats.add("$rowNo$seatNo");
               seatPriceList.add(price);
+              print("======================= seat number ====================");
+              print("rowNumber - ${rowNo} ================== SeatNumber - ${seatNo}");
             } else {
               seatPriceList.add(price);
               seats.add("$rowNo$seatNo");
+              print("======================= seat number ====================");
+              print("rowNumber - ${rowNo} ================== SeatNumber - ${seatNo}");
             }
           }
 
@@ -83,7 +87,7 @@ class SeatLayout extends StatelessWidget {
       child: Column(
         children: [
           SvgPicture.asset("assets/icons/screen_here.svg"),
-          const Text("Screen Here"),
+          const Text("Enter Here"),
           const SizedBox(
             height: 10,
           ),
@@ -102,7 +106,8 @@ class SeatLayout extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                              "\u20B9 ${model.seatTypes[seatLength - index - 1]['price']} ${model.seatTypes[seatLength - index - 1]['title']}"),
+                              // "\u20B9 ${model.seatTypes[seatLength - index - 1]['price']} ${model.seatTypes[seatLength - index - 1]['title']}"),
+                              "\u20B9 ${model.seatTypes[seatLength - index - 1]['price']}"),
                           const SizedBox(
                             height: 10,
                           ),
@@ -127,23 +132,29 @@ class SeatLayout extends StatelessWidget {
                                         ),
                                       );
                                     }
-                                    //making gaps
-                                    //making last row filled
-                                    if ((col == model.gapColIndex || col == model.gapColIndex + model.gap - 1) &&
-                                        (row != model.rowBreaks[index] - 1 && model.isLastFilled)) {
-                                      return Padding(
-                                        padding: const EdgeInsets.all(5.0),
-                                        child: Container(
-                                          height: 20,
-                                          width: 20,
-                                        ),
-                                      );
-                                    }
+                                    // //making gaps
+                                    // //making last row filled
+                                    // if ((col == model.gapColIndex || col == model.gapColIndex + model.gap - 1) &&
+                                    //     (row != model.rowBreaks[index] - 1 && model.isLastFilled)) {
+                                    //   return Padding(
+                                    //     padding: const EdgeInsets.all(5.0),
+                                    //     child: Container(
+                                    //       height: 20,
+                                    //       width: 20,
+                                    //     ),
+                                    //   );
+                                    // }
 
                                     //numbering the seats
                                     seatCounter++;
-                                    String seatNo = "$seatCounter";
+                                    // String seatNo = "$seatCounter";
+                                    // print("======================= seatnumber ====================");
+                                    // print("rowNumber - ${rowNo} ================== SeatNumber - ${seatNo}");
                                     double price = model.seatTypes[seatLength - index - 1]['price'];
+                                    // print(":================= price ===================");
+                                    // print(price);
+
+
 
                                     return mainSeatLayout(
                                         seatPrice: SeatSelectionController.instance.seatPrice,

@@ -1,10 +1,17 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:libmanagement/controllers/auth_controller.dart';
+import 'package:libmanagement/pages/home_screen.dart';
+import 'package:libmanagement/pages/login_screen.dart';
+// import 'package:libmanagement/firestoreupdate/CRUDFeatures/HomePage.dart';
 import 'package:libmanagement/pages/splash_screen.dart';
 import 'controllers/common_controller.dart';
 import 'package:get/get.dart';
 import 'utils/mytheme.dart';
+
+import 'package:libmanagement/auth/login.dart';
+import 'package:libmanagement/pages/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +31,18 @@ class MyApp extends StatelessWidget {
       // title: 'Flutter Demo',
       theme: MyTheme.myLightTheme,
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      // home: const SplashScreen(),
+      // home: const HomePage(),
+      home: StreamBuilder(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return HomeScreen();
+        } else {
+          return LoginScreen();
+        }
+      },
+      ),
       );
   }
 }
